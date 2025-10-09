@@ -9,7 +9,7 @@ These benchmarks represent today’s leading testbeds—ideal references for fut
 
 ## 📂 Dataset List
 
-### 1. [MentalChat-16K](https://arxiv.org/abs/2503.13509v1)
+### 1. [MentalChat-16K](https://github.com/ChiaPatricia/MentalChat16K)
 - **Task:** Long-context mental-health counseling  
 - **Scope:** Empathy + reasoning + safety (symptom, risk, intervention tags)  
 - **Language:** English  
@@ -25,15 +25,17 @@ These benchmarks represent today’s leading testbeds—ideal references for fut
 - **Language:** English  
 - **Scale:** 2 284 patient–assistant conversations  
 - **Insight:** Measures long-context degradation and alignment with patient values  
+- **Availability:** *Dataset not yet publicly released (authors announced future open-sourcing). Code/data link pending publication.*  
 
----
 
 ### 3. [MDD-5k](https://github.com/lemonsis/mdd-5k)
 - **Task:** Clinical diagnosis & treatment simulation  
 - **Scope:** Structured DSM-5-style diagnostic dialogue  
 - **Language:** Chinese  
 - **Scale:** 5 000 doctor–patient conversations  
-- **Method:** Neuro-symbolic multi-agent generation; includes explicit diagnosis and treatment labels  
+- **Method:** Generated through a neuro-symbolic multi-agent simulation framework,
+  guided by 1000 de-identified real patient cases (used as seed clinical knowledge, not released publicly).
+
 
 ---
 
@@ -112,6 +114,34 @@ These benchmarks represent today’s leading testbeds—ideal references for fut
 | **2025 + Frontier** | Integrated counseling + diagnosis + safety | MentalChat-16K |
 
 ---
+
+---
+
+## 📊 Benchmark Evaluation Summary
+
+| Dataset | Evaluation Setting | Reported Metrics / Baselines | Notes |
+|:--|:--|:--|:--|
+| **MentalChat-16K** | Long-context dialogue generation; human + LLM eval | GPT-4 ≈ 4.5/5 empathy, 0.92 coherence; Gemini slightly lower | Human judges rated empathy & safety alignment |
+| **MHSD / MedAgent** | MultiSenseEval (6-dimension human evaluation) | GPT-4-Turbo F1 ≈ 0.86 (diagnosis consistency), 0.81 empathy | Dataset not yet released; results reported in paper only |
+| **MDD-5k** | Multi-agent diagnostic reasoning | LLM baseline accuracy ≈ 0.88 DSM-5 compliance | Evaluated on structured diagnosis prediction |
+| **PsyDial** | Counseling generation; human coherence test | No numeric metric (qualitative only) | Focus on privacy & continuity, not leaderboard |
+| **SMILE / SmileChat** | Emotional support generation | MeChat model BLEU ≈ 0.42, human empathy ≈ 4.1/5 | Trained from GPT-3.5 expanded dialogues |
+| **SoulChatCorpus** | Empathy classification + generation | GLM-6B empathy acc ≈ 0.92 | Large-scale pretraining corpus (2.3M dialogues) |
+| **HamRaz** | Person-Centered Therapy evaluation | HamRazEval empathy F1 ≈ 0.78 | Cross-cultural benchmark in Persian |
+| **CounseLLMe** | Human vs LLM comparison study | No numeric scores (qualitative human study) | Trust/conflict/emotion coded manually |
+| **Between Help and Harm** | Safety response adequacy | GPT-4 helpfulness ≈ 0.71 F1; Claude ≈ 0.67 | Evaluated across 6 crisis types |
+
+---
+
+> ⚠️ **Note:** Many benchmarks in this domain rely on *human evaluation or LLM-based scoring* rather than automatic metrics.  
+> Numerical results may vary depending on the evaluation rubric and prompt design.
+
+---
+
+## 💡 Future Plan
+We plan to expand this section into a **living leaderboard**,  
+where future models can be compared across empathy, diagnosis, and safety metrics on these benchmarks.
+
 
 ## 🎯 Research Implication
 

@@ -63,14 +63,15 @@ They serve as the **core benchmarks for evaluating and advancing LLM-based empat
 - **Task:** Clinical diagnosis & treatment simulation  
 - **Scope:** Structured DSM-5-style diagnostic dialogue  
 - **Language:** Chinese  
-- **Scale:** 5 000 doctor–patient conversations  
-- **Method:** Generated via neuro-symbolic multi-agent simulation, guided by 1000 de-identified real patient cases (used as seed clinical knowledge, not released publicly).  
+- **Scale:** 5，000 doctor–patient conversations  
+- **Method:** Generated via neuro-symbolic multi-agent simulation, guided by 1000 de-identified real patient cases (used as seed clinical knowledge, not released publicly).
+- **Availability:** *Dataset not yet publicly released (authors announced future open-sourcing). Code/data link pending publication.* 
 
 #### [MHSD / MedAgent (Mental Health Sensemaking Dialogue)](https://arxiv.org/abs/2505.20201)
 - **Task:** Diagnostic reasoning and human-centric evaluation  
 - **Scope:** MultiSenseEval framework—empathy, coherence, personalization, risk awareness  
 - **Language:** English  
-- **Scale:** 2 284 patient–assistant conversations  
+- **Scale:** 2，284 patient–assistant conversations  
 - **Insight:** Measures long-context degradation and alignment with patient values  
 - **Availability:** *Dataset not yet publicly released (authors announced future open-sourcing). Code/data link pending publication.*  
 

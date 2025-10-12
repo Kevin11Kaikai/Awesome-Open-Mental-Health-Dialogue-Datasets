@@ -1,6 +1,7 @@
+
 # 🧠 Benchmark Collection of LLM-Based Mental Health Dialogue Datasets
 
-This repository provides a **chronologically organized collection of open-source multi-turn dialogue datasets** in the field of **AI for mental health**.  
+This repository provides a **chronologically organized collection of open-source dialogue datasets** in the field of **AI for mental health**.  
 The datasets span from early counseling generation (PsyQA, 2021) to structured, safe, and long-context benchmarks (MentalChat-16K, 2025).  
 They serve as the **core benchmarks for evaluating and advancing LLM-based empathy, diagnostic reasoning, and safety**.
 
@@ -63,15 +64,14 @@ They serve as the **core benchmarks for evaluating and advancing LLM-based empat
 - **Task:** Clinical diagnosis & treatment simulation  
 - **Scope:** Structured DSM-5-style diagnostic dialogue  
 - **Language:** Chinese  
-- **Scale:** 5，000 doctor–patient conversations  
-- **Method:** Generated via neuro-symbolic multi-agent simulation, guided by 1000 de-identified real patient cases (used as seed clinical knowledge, not released publicly).
-- **Availability:** *Dataset not yet publicly released (authors announced future open-sourcing). Code/data link pending publication.* 
+- **Scale:** 5 000 doctor–patient conversations  
+- **Method:** Generated via neuro-symbolic multi-agent simulation, guided by 1000 de-identified real patient cases (used as seed clinical knowledge, not released publicly).  
 
 #### [MHSD / MedAgent (Mental Health Sensemaking Dialogue)](https://arxiv.org/abs/2505.20201)
 - **Task:** Diagnostic reasoning and human-centric evaluation  
 - **Scope:** MultiSenseEval framework—empathy, coherence, personalization, risk awareness  
 - **Language:** English  
-- **Scale:** 2，284 patient–assistant conversations  
+- **Scale:** 2 284 patient–assistant conversations  
 - **Insight:** Measures long-context degradation and alignment with patient values  
 - **Availability:** *Dataset not yet publicly released (authors announced future open-sourcing). Code/data link pending publication.*  
 
@@ -113,70 +113,23 @@ They serve as the **core benchmarks for evaluating and advancing LLM-based empat
 
 ---
 
-## 📊 Benchmark Evaluation Summary
+## 🧩 Supplementary Benchmarks (Cross-Year Additions)
 
-| Dataset | Evaluation Setting | Reported Metrics / Baselines | Notes |
-|:--|:--|:--|:--|
-| **PsyQA** | Counseling text generation | BLEU ≈ 14.3, ROUGE-L ≈ 19.0, Human Empathy ≈ 3.8 | Foundation for later corpora |
-| **SoulChatCorpus** | Empathy classification + generation | Empathy Accuracy ≈ 0.92 | GLM-6B fine-tuning corpus |
-| **SMILE / MeChat** | Emotional support generation | BLEU ≈ 0.42, Human Empathy ≈ 4.1 / 5 | Multi-turn Chinese dialogues |
-| **PsyDial** | Long-context privacy-preserving generation | BLEU ≈ 18.7, BERTScore ≈ 0.89, Empathy ≈ 4.6 | ACL 2025 long paper |
-| **MDD-5k** | Multi-agent diagnostic reasoning | DSM-5 compliance ≈ 0.88 | Synthetic dataset guided by 1000 real cases |
-| **MHSD / MedAgent** | MultiSenseEval (human evaluation) | Diagnosis F1 ≈ 0.86, Empathy ≈ 0.81 | Dataset pending release |
-| **CounseLLMe** | Human vs LLM therapy simulation | Qualitative only | Cross-lingual trust/emotion analysis |
-| **HamRaz** | Person-Centered Therapy evaluation | Empathy F1 ≈ 0.78 | Cross-cultural benchmark |
-| **MentalChat-16K** | Long-context generation + safety | GPT-4 Empathy ≈ 4.5, Coherence ≈ 0.92 | Combines empathy, reasoning, and safety |
-| **Between Help and Harm** | Safety adequacy | GPT-4 F1 ≈ 0.71, Claude ≈ 0.67 | High-risk scenario benchmark |
+To complement the chronological collection, the following open-source datasets further broaden the landscape of **LLM-based mental-health dialogues** across emotional support, cognitive-behavioural therapy, bilingual reasoning, and long-term counselling simulation.
 
----
-
-## 📈 Evolution Roadmap
-
-| Stage | Year | Innovation | Representative Datasets |
-|:--|:--:|:--|:--|
-| **Foundational** | 2021–2022 | Single-turn counseling generation | PsyQA |
-| **Empathy Expansion** | 2023 | Empathy stages & emotion annotation | SoulChat |
-| **Dialogue Expansion** | 2024 | Multi-turn generation | SMILE / MeChat |
-| **Privacy-Preserving** | 2025 | Realistic reconstruction with RMRR | PsyDial |
-| **Diagnostic Simulation** | 2025 | Multi-agent DSM-5 reasoning | MDD-5k / MHSD |
-| **Cross-Cultural** | 2024–2025 | Multilingual therapy benchmarks | CounseLLMe / HamRaz |
-| **Unified Integration** | 2025 | Empathy + reasoning + safety | MentalChat-16K |
-| **Safety Evaluation** | 2025 | Crisis handling & adequacy scoring | Between Help and Harm |
+| Dataset | Year | Language | Task / Focus | Scale | Notable Features | Source |
+|:--|:--:|:--:|:--|:--|:--|:--|
+| **ESConv** | 2022 | English | Emotional support conversation | 1.3 K dialogues (~29.5 turns avg.) | 8 support strategies × 3 problem types; empathy-oriented counselling | [GitHub](https://github.com/thu-coai/Emotional-Support-Conversation) |
+| **AugESC** | 2023 | English | Augmented emotional support | 130 K dialogues (GPT-J generated) | 100× larger than ESConv; improved strategy diversity | [arXiv:2202.13047](https://arxiv.org/abs/2202.13047) |
+| **MusPsy-Dataset** | 2025 | English | Multi-session psychological counselling | 1.4 K clients × ~6 sessions | Tracks longitudinal improvement and emotion trajectory | [arXiv:2501.09473](https://arxiv.org/abs/2501.09473) |
+| **CACTUS** | 2024 | English | Cognitive-Behavioural Therapy (CBT) corpus | 31.6 K sessions | Columns: *thought*, *patterns*, *cbt_technique*, *plan*, *dialogue* | [HuggingFace](https://huggingface.co/datasets/LangAGI-Lab/cactus) |
+| **CPsyCoun** | 2024 | Chinese | Counselling dialogues + evaluation | 3.1 K (CPsyCounD) + 500 eval (CPsyCounE) | Expert-curated with 5 counselling intents and 9 emotion labels | [GitHub](https://github.com/X-D-Lab/CPsyCoun) |
+| **Amod Mental-Health Conversations** | 2023 | English | FAQ-style Q/A chatbot data | ~2 K pairs | Real anonymized therapy and support queries | [HuggingFace](https://huggingface.co/datasets/Amod/mental_health_counseling_conversations) |
+| **Psy-Insight** | 2025 | Chinese + English | Explainable bilingual counselling | 10 K bilingual dialogues (6,208 EN / 4,310 ZH rounds) | Annotated for reasoning, emotion, treatment strategy | [GitHub](https://github.com/NJUPsyAI/Psy-Insight) |
+| **SimPsyDial** | 2024 | English | Simulated LLM-to-LLM psychological counselling | 2 × 10 K simulated sessions | Multi-agent role-play with controllable empathy levels | [arXiv:2408.15787](https://arxiv.org/abs/2408.15787) |
 
 ---
 
-## 🎯 Research Implication
-
-These datasets together form the **benchmark collection** for LLM-based mental-health dialogue research.  
-They define the current **state-of-the-art battlefield**—the standards that upcoming models must **match, evaluate against, and surpass**  
-in empathy, diagnostic accuracy, and risk-aware reasoning.
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!  
-Add new open-source datasets, benchmarks, or evaluation scripts through Pull Requests.
-
----
-
-## 🔖 Citation
-
-```bibtex
-@misc{song2025llm_benchmark_mentalhealth,
-  title={Benchmark Collection of LLM-based Mental Health Dialogue Datasets},
-  author={Song, Yukai},
-  year={2025},
-  howpublished={\url{https://github.com/YukaiSong/awesome-mental-health-dialogue-datasets}},
-  note={Chronologically organized benchmark collection integrating empathy, diagnosis, and safety evaluation for LLM research.}
-}
-```
-
----
-
-## 🧠 Acknowledgement
-
-All credit to the original dataset creators and research teams at  
-University of Pittsburgh, UIUC, Zhejiang University, Tsinghua University, ETH Zürich, and other institutions advancing **AI for Mental Health**.
+> 💡 *These supplementary datasets extend the benchmark scope beyond the core timeline, adding realism, cross-lingual reasoning, and explainability dimensions for future evaluation.*
 
 ---

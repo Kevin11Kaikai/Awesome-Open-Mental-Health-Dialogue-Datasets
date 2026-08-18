@@ -169,7 +169,27 @@ Each entry now records two fields that most papers bury in methods text, or omit
 
 ### Adolescent-Primary Corpus (2025)
 
-#### [DeepWell-Adol](https://aclanthology.org/2025.emnlp-main.646/)
+#### [DeepWell-Adol](https://aclanthology.org/2025.emnlp-main.646/) ([GitHub](https://github.com/DeepWell-Adol/DeepWell-Adolescent))
+EMNLP 2025, Tsinghua Shenzhen International Graduate School. This is currently the **only adolescent-primary corpus** in this collection.
+
+**What it is.** A Chinese multi-turn coaching corpus for *positive* adolescent mental health (positive psychology + coaching), not CBT diagnosis or crisis counseling. Existing datasets (PsyQA, SoulChat, SMILE, CPsyCoun) mostly cover general-population counseling, empathy, or symptom management. DeepWell targets developmental issues — academics, peers, identity — with prevention and growth rather than clinical treatment.
+
+**Who the adolescents are.** Age is reported. A paper survey collected 125 responses from 87 students (Mage = 13.51, SD = 2.59; Grades 2–12). The main range is 10–19; eight ages 7–9 were kept. Experts selected 87 complete scenarios and wrote dialogues from them. **Age comes from real adolescent questionnaires; the dialogues themselves are not transcribed therapy sessions.**
+
+**How it was built (Hybrid).** 1,795 multi-turn dialogues in two parts:
+
+| Split | Size | Construction |
+|:--|:--|:--|
+| Expert-written | 925 (from 1,139 drafted) | 51 adolescent-MH experts; mean 8.69 years of experience; ~43% are primary/secondary school counseling teachers |
+| LLM-expanded | 870 | DeepSynergy: GLM-4-Plus writes an intervention plan, then the dialogue |
+
+Expert dialogues average 6.88 turns; generated dialogues 13.18 turns. Screening requires roughly ages 8–18, 5–10 rounds, **no crisis intervention, and no suicidal/self-harm content**. This is wellbeing coaching, not a clinical or crisis corpus.
+
+**Themes** (expert split): emotion regulation 147; academic & career 251; social & interpersonal 363; lifestyle & environment 89; personal growth & identity 75. Dialogues follow a six-stage coaching script: build rapport → clarify the issue → find strengths/resources → imagine a preferred future → set goals → summarize and transfer.
+
+**Results, in brief.** On standard counseling/empathy metrics it matches or slightly beats SMILECHAT and CPsyCounD; it leads more clearly on positive-psychology outcomes (positive processes, character strengths, healthy behaviors). LoRA fine-tuning Qwen2.5-7B / ChatGLM3-6B / Baichuan2-7B works best when expert-written and generated data are combined. Ethics approval: Life Ethics Committee, Tsinghua SIGS (F151, 2024).
+
+**Boundary for use.** Treat it as *real adolescent scenarios + expert/LLM-written coaching dialogues*, not real adolescent counseling transcripts. Suitable for youth wellbeing-support models. Not suitable as training data for crisis intervention, clinical diagnosis, or authentic adolescent speech. Chinese only; the authors note limited cultural and developmental coverage.
 - **Task:** Positive mental health and wellbeing coaching for adolescents
 - **Scope:** Emotion regulation, academic/career development, social relationships, lifestyle adaptation, personal growth
 - **Language:** Chinese

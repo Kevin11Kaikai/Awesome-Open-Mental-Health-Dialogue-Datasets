@@ -11,7 +11,7 @@ Each entry now records two fields that most papers bury in methods text, or omit
 | **Origin** | Real / Hybrid / Synthetic | *Real* = human-written dialogues or public Q&A. *Hybrid* = a real seed (forum post, case report, or transcript) expanded or reconstructed by an LLM. *Synthetic* = fully model-generated, including LLM-to-LLM role-play. |
 | **Age / Adolescent** | Yes / No / Unknown / Minority | Whether help-seekers are **adolescents (WHO 10–19)**. *Minority* = a small teen slice exists, but the corpus is not adolescent-primary. *Unknown* = papers do not report age. |
 
-**Coverage note:** among the originally listed corpora, none is adolescent-primary. [DeepWell-Adol](https://aclanthology.org/2025.emnlp-main.646/) is included below as the open dialogue dataset that actually collects from adolescents.
+**Coverage note:** among the originally listed corpora, none is adolescent-primary. [DeepWell-Adol](https://aclanthology.org/2025.emnlp-main.646/) is included below as the open dialogue dataset that actually collects from adolescents (Chinese). For **English** corpora that *might* include ages **12–21**, see [English datasets that might include ages 12–21](#english-datasets-that-might-include-ages-1221).
 
 ---
 

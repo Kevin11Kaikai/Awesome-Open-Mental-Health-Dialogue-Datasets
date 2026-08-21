@@ -219,12 +219,88 @@ To complement the chronological collection, the following open-source datasets f
 
 ---
 
+## English datasets that might include ages 12–21
+
+César asked for English-language corpora that **might** contain people aged **12–21**. Below is a briefing in the same spirit as the CACTUS / DeepWell notes. Important framing:
+
+- **No English dataset in this list is adolescent-primary** the way DeepWell-Adol is (Chinese; Mage = 13.51).
+- Ages **12–21** mix mid-adolescence and early adulthood. A hit on “student,” “school,” or “academic pressure” is **not** proof of age 12–21.
+- Prefer corpora with an **explicit, filterable age field**. Topic-only evidence is weak.
+
+### Quick ranking for a 12–21 English option
+
+| Priority | Dataset | Why | 12–21 status |
+|:--:|:--|:--|:--|
+| 1 | **CACTUS** | Only large English set with parseable age in each row | Filterable synthetic personas; paper: 10–19 = 1.83% (~580 of 31.6K). Ages 20–21 sit inside the large 20–29 band (22.18%) |
+| 2 | **MusPsy** | Age is a static profile trait from real case reports | Filterable **if** released profiles expose age; no published 12–21 %. Examples include high-school clients |
+| 3 | **ESConv** (+ **AugESC**) | Youth-relevant *topics* only | No age field. Academic pressure 156; school bullying 2 of ~1.3K. Crowdworkers typically 18+ |
+| 4 | **Amod / CounselChat** | Real English therapy Q&A | No age field; may *mention* teens in free text |
+| 5 | **MentalChat-16K** | Strong English hybrid benchmark | Real half: caregivers, mean 60.3, inclusion **18+**, range 19–100 → only a thin 19–21 tip possible. Synthetic half: no age labels |
+| — | SimPsyDial, MHSD, CounseLLMe, Between Help and Harm, Psy-Insight (EN) | English (or bilingual) but not age-usable for 12–21 | No usable age stratification; adult / unknown |
+
+### Detail cards (English only)
+
+#### [CACTUS](https://huggingface.co/datasets/LangAGI-Lab/cactus) — best English *filterable* option
+- **Who / where:** Yonsei University (LangAGI-Lab). EMNLP 2024 Findings. Authors: Suyeon Lee, Sunghwan Kim, Minju Kim (equal); corresponding: Jinyoung Yeo. Code: https://github.com/coding-groot/cactus
+- **What:** Fully **synthetic** English CBT multi-turn counseling. 31,577 dialogues (~16.6 turns). GPT-4o script-mode generation; CTRS filter (mean ≥ 5). Downstream model: **CAMEL**
+- **Fields:** `thought`, `patterns`, `intake_form` (contains `Age:`), `cbt_technique`, `cbt_plan`, `attitude`, `dialogue`
+- **12–21:** Parse `Age` from `intake_form`. Paper Table 9: **10–19 = 1.83%**; **20–29 = 22.18%**. So a strict teen band is small (~580); extending to 21 adds whatever share of 20–21 exists inside 20–29 (not published year-by-year)
+- **Caveat:** Age is an LLM-assigned persona, not a real client. Persona text can be incoherent (e.g. Age = 12 with college/career failure). Any 12–21 subset needs manual QC. Adult CBT framing, not adolescent developmental design
+
+#### [MusPsy](https://arxiv.org/abs/2506.06626) — age in profiles, distribution unknown
+- **What:** Hybrid multi-session CBT. ~1,400 clients × ~6 sessions. Profiles from published case reports; dialogues LLM-generated
+- **12–21:** Static traits include **age**, gender, occupation. Paper examples include high-school (e.g. Grade 2) clients. **No aggregate age table** is published, so 12–21 count is unknown until profiles are audited
+- **Caveat:** Dialogues are synthetic expansions of case-report seeds, not session transcripts
+
+#### [ESConv](https://github.com/thu-coai/Emotional-Support-Conversation) — topic proxy only
+- **What:** Real crowdsourced emotional-support dialogues (~1.3K). Help-seeker / supporter role-play
+- **12–21:** **No age field.** Youth-adjacent problem tags: academic pressure (156), school bullying (2), issues with parent (18), appearance anxiety (12). Crowd platforms typically require adults (18+)
+- **Caveat:** Topic ≠ speaker age. Do not treat academic-pressure chats as a teen corpus
+
+#### [AugESC](https://arxiv.org/abs/2202.13047) — synthetic expansion of ESConv
+- **What:** GPT-J–augmented ESC (~65K–130K). Same domain as ESConv
+- **12–21:** Same limitation: no age labels; only topic continuity with ESConv
+
+#### [Amod / CounselChat](https://huggingface.co/datasets/Amod/mental_health_counseling_conversations) — real Q&A, no age
+- **What:** ~2K real English counseling Q&A from CounselChat.com (licensed therapists)
+- **12–21:** No demographic table. Free-text questions may discuss teens/parents/school, but askers’ ages are unpublished
+- **Caveat:** Cannot filter to 12–21 without unsupervised text heuristics (noisy)
+
+#### [MentalChat-16K](https://arxiv.org/abs/2503.13509) — adult caregivers + unaged synthetic
+- **What:** Hybrid English. 6,338 paraphrased PISCES hospice-caregiver interviews + 9,775 GPT-3.5 counseling QA (33 topics)
+- **12–21:** Real half inclusion **18+**, mean age **60.3**, reported range **19–100** → at most a thin early-adult tip (19–21), not adolescents. Synthetic half has **no age field**
+- **Caveat:** Excellent general English MH resource; poor fit as a youth corpus
+
+#### [Between Help and Harm](https://arxiv.org/html/2509.24857v1) — crisis inputs, no age
+- **What:** ~2,252 English crisis-user inputs curated from 12 HF sources for safety evaluation
+- **12–21:** No age metadata. Crisis *language* may include youth contexts; speakers are not age-labeled
+
+#### [SimPsyDial](https://arxiv.org/abs/2408.15787) / [MHSD](https://arxiv.org/abs/2505.20201) / [CounseLLMe](https://osf.io/2ay8d/) — synthetic adults
+- **SimPsyDial:** LLM–LLM counseling; no age stratification published
+- **MHSD / MedAgent:** 2,284 synthetic diagnostic dialogues; adult patient personas; dataset release pending
+- **CounseLLMe:** 400 EN/IT simulated depression dialogues; adult patient–therapist framing
+- **12–21:** Not usable as youth-labeled English data without new annotation
+
+#### [Psy-Insight](https://github.com/NJUPsyAI/Psy-Insight) (English half) — real counseling style, age unpublished
+- **What:** Bilingual explainable counseling; English portion ~6,208 turns / 520 sessions from blogs and books
+- **12–21:** No published age distribution for clients
+
+### Practical recommendation for ages 12–21 (English)
+
+1. **Keep CACTUS as the primary English option** and build a QC’d `Age ∈ [12, 21]` subset from `intake_form`.
+2. **Audit MusPsy profiles** next, if the release exposes age — real case-report ages are more trustworthy than CACTUS personas, but dialogues remain generated.
+3. Use **ESConv / AugESC / CounselChat** only as weak topic-side evidence, not as age-verified youth data.
+4. For **true adolescent collection** (survey-grounded ages), the list still points to **DeepWell-Adol** — Chinese only.
+
+---
+
 ## How to read Origin and Age
 
 1. **Origin = Hybrid is the majority pattern.** Most large counseling corpora start from a real seed and then use an LLM to expand, reconstruct, or role-play. Treat them as neither fully clinical nor fully synthetic.
 2. **Age is usually unpublished.** Forum crawls (PsyQA, HamRaz, Amod) and reconstructed reports (CPsyCoun, PsyDial, MusPsy) almost never release help-seeker age.
 3. **Adolescent ≠ adolescent-relevant topics.** Academic pressure, school bullying, or “youth behavior” tags do not mean the speakers were adolescents. ESConv, PsyQA, and HamRaz may *talk about* youth issues while being collected from general/adult users.
-4. **Known adult-skewed corpora:** MentalChat-16K real subset (hospice caregivers, mean age 60.3); MDD-5k (~90% aged 20–40); CACTUS (teen personas 1.83%).
+4. **Known adult-skewed corpora:** MentalChat-16K real subset (hospice caregivers, mean age 60.3); MDD-5k (~90% aged 20–40); CACTUS (paper: teen personas 10–19 = 1.83%).
+5. **Ages 12–21 (English):** see the dedicated section above. Filterable age ≈ CACTUS (+ possibly MusPsy). Everything else is topic-only or unknown.
 
 ---
 
